@@ -1,0 +1,141 @@
+use master
+go
+
+create database dbGestiónTareas
+go 
+use dbGestiónTareas
+go
+-- Crear la tabla de Categorías
+CREATE TABLE Categories (
+    CategoryId INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL
+);
+
+-- Crear la tabla de Usuarios
+CREATE TABLE Users (
+    UserId INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL
+);
+
+-- Crear la tabla de Tareas
+CREATE TABLE Tasks (
+    TaskId INT PRIMARY KEY IDENTITY(1,1),
+    Title NVARCHAR(200) NOT NULL,
+    Description NVARCHAR(MAX),
+    DueDate DATETIME,
+    IsCompleted BIT DEFAULT 0,
+    CategoryId INT,
+    UserId INT,
+    FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId),
+    FOREIGN KEY (UserId) REFERENCES Users(UserId)
+);
+
+-- Crear la tabla de Comentarios (opcional)
+CREATE TABLE Comments (
+    CommentId INT PRIMARY KEY IDENTITY(1,1),
+    TaskId INT,
+    Content NVARCHAR(MAX),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (TaskId) REFERENCES Tasks(TaskId)
+);
+USE dbGestiónTareas
+GO
+
+-- Insertar usuarios
+INSERT INTO Users (Name, Email) VALUES ('Alice Johnson', 'alice.johnson@example.com');
+INSERT INTO Users (Name, Email) VALUES ('Bob Smith', 'bob.smith@example.com');
+INSERT INTO Users (Name, Email) VALUES ('Charlie Brown', 'charlie.brown@example.com');
+INSERT INTO Users (Name, Email) VALUES ('Diana Prince', 'diana.prince@example.com');
+
+-- Insertar categorías
+INSERT INTO Categories (Name) VALUES ('Work');
+INSERT INTO Categories (Name) VALUES ('Personal');
+INSERT INTO Categories (Name) VALUES ('Shopping');
+INSERT INTO Categories (Name) VALUES ('Health');
+INSERT INTO Categories (Name) VALUES ('Education');
+INSERT INTO Categories (Name) VALUES ('Travel');
+INSERT INTO Categories (Name) VALUES ('Finance');
+INSERT INTO Categories (Name) VALUES ('Home');
+INSERT INTO Categories (Name) VALUES ('Entertainment');
+INSERT INTO Categories (Name) VALUES ('Fitness');
+INSERT INTO Categories (Name) VALUES ('Family');
+INSERT INTO Categories (Name) VALUES ('Friends');
+INSERT INTO Categories (Name) VALUES ('Hobbies');
+INSERT INTO Categories (Name) VALUES ('Volunteering');
+INSERT INTO Categories (Name) VALUES ('Technology');
+INSERT INTO Categories (Name) VALUES ('Reading');
+INSERT INTO Categories (Name) VALUES ('Writing');
+INSERT INTO Categories (Name) VALUES ('Learning');
+INSERT INTO Categories (Name) VALUES ('Cooking');
+INSERT INTO Categories (Name) VALUES ('Gardening');
+INSERT INTO Categories (Name) VALUES ('Music');
+INSERT INTO Categories (Name) VALUES ('Movies');
+INSERT INTO Categories (Name) VALUES ('Sports');
+INSERT INTO Categories (Name) VALUES ('Gaming');
+INSERT INTO Categories (Name) VALUES ('Art');
+INSERT INTO Categories (Name) VALUES ('Photography');
+INSERT INTO Categories (Name) VALUES ('Travel Planning');
+INSERT INTO Categories (Name) VALUES ('Investments');
+
+-- Insertar tareas
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Complete Project Report', 'Finish the project report for the client.', '2023-10-15', 0, 1, 1);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Buy Groceries', 'Pick up milk, bread, and eggs from the store.', '2023-10-10', 0, 3, 2);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Doctor Appointment', 'Schedule a doctor appointment for next week.', '2023-10-20', 0, 4, 3);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Read Chapter 5', 'Read Chapter 5 of the book for the exam.', '2023-10-12', 0, 5, 4);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Plan Vacation', 'Research and plan the summer vacation.', '2023-11-01', 0, 6, 1);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Pay Bills', 'Pay the electricity and water bills.', '2023-10-05', 0, 7, 2);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Clean House', 'Clean the living room and kitchen.', '2023-10-08', 0, 8, 3);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Watch Movie', 'Watch the new movie released this weekend.', '2023-10-14', 0, 9, 4);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Gym Workout', 'Complete the gym workout routine.', '2023-10-09', 0, 10, 1);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Family Dinner', 'Organize a family dinner for the weekend.', '2023-10-22', 0, 11, 2);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Meet Friends', 'Meet up with friends for coffee.', '2023-10-18', 0, 12, 3);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Painting', 'Work on the new painting project.', '2023-10-25', 0, 13, 4);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Volunteer Work', 'Volunteer at the local community center.', '2023-10-30', 0, 14, 1);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Learn Python', 'Start learning Python programming.', '2023-11-05', 0, 15, 2);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Cook Dinner', 'Cook a new recipe for dinner.', '2023-10-11', 0, 16, 3);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Plant Flowers', 'Plant new flowers in the garden.', '2023-10-16', 0, 17, 4);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Listen to Music', 'Listen to the new album released today.', '2023-10-19', 0, 18, 1);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Watch Documentary', 'Watch the new documentary on Netflix.', '2023-10-23', 0, 19, 2);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Play Soccer', 'Play soccer with friends at the park.', '2023-10-26', 0, 20, 3);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Play Video Game', 'Play the new video game released today.', '2023-10-28', 0, 21, 4);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Draw Portrait', 'Draw a portrait for the art exhibition.', '2023-11-02', 0, 22, 1);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Take Photos', 'Take photos at the local park.', '2023-11-04', 0, 23, 2);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Plan Trip', 'Plan a trip to Europe for next year.', '2023-11-07', 0, 24, 3);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Check Investments', 'Check the status of investments.', '2023-11-10', 0, 25, 4);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Read Book', 'Read the new book by John Grisham.', '2023-11-12', 0, 5, 1);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Write Article', 'Write an article for the blog.', '2023-11-15', 0, 15, 2);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Learn Spanish', 'Start learning Spanish on Duolingo.', '2023-11-18', 0, 15, 3);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Bake Cake', 'Bake a chocolate cake for the party.', '2023-11-20', 0, 16, 4);
+INSERT INTO Tasks (Title, Description, DueDate, IsCompleted, CategoryId, UserId) VALUES ('Plant Vegetables', 'Plant vegetables in the garden.', '2023-11-22', 0, 17, 1);
+
+-- Insertar comentarios
+INSERT INTO Comments (TaskId, Content) VALUES (1, 'Make sure to include all the data in the report.');
+INSERT INTO Comments (TaskId, Content) VALUES (2, 'Don''t forget to buy some fruits as well.');
+INSERT INTO Comments (TaskId, Content) VALUES (3, 'Check the availability of the doctor before scheduling.');
+INSERT INTO Comments (TaskId, Content) VALUES (4, 'Focus on understanding the key concepts.');
+INSERT INTO Comments (TaskId, Content) VALUES (5, 'Research the best places to visit.');
+INSERT INTO Comments (TaskId, Content) VALUES (6, 'Set a reminder to pay the bills on time.');
+INSERT INTO Comments (TaskId, Content) VALUES (7, 'Clean the bathroom as well.');
+INSERT INTO Comments (TaskId, Content) VALUES (8, 'Check the movie timings and book tickets.');
+INSERT INTO Comments (TaskId, Content) VALUES (9, 'Invite friends to join the workout.');
+INSERT INTO Comments (TaskId, Content) VALUES (10, 'Plan the menu for the dinner.');
+INSERT INTO Comments (TaskId, Content) VALUES (11, 'Confirm the meeting time with friends.');
+INSERT INTO Comments (TaskId, Content) VALUES (12, 'Bring your painting supplies.');
+INSERT INTO Comments (TaskId, Content) VALUES (13, 'Check the volunteer schedule.');
+INSERT INTO Comments (TaskId, Content) VALUES (14, 'Follow the Python tutorial step by step.');
+INSERT INTO Comments (TaskId, Content) VALUES (15, 'Try a new recipe for dinner.');
+INSERT INTO Comments (TaskId, Content) VALUES (16, 'Plant some seasonal flowers.');
+INSERT INTO Comments (TaskId, Content) VALUES (17, 'Listen to the new album by your favorite artist.');
+INSERT INTO Comments (TaskId, Content) VALUES (18, 'Watch the documentary with friends.');
+INSERT INTO Comments (TaskId, Content) VALUES (19, 'Organize a soccer match with friends.');
+INSERT INTO Comments (TaskId, Content) VALUES (20, 'Play the new game with friends.');
+INSERT INTO Comments (TaskId, Content) VALUES (21, 'Focus on the details of the portrait.');
+INSERT INTO Comments (TaskId, Content) VALUES (22, 'Take photos of the beautiful scenery.');
+INSERT INTO Comments (TaskId, Content) VALUES (23, 'Plan the itinerary for the trip.');
+INSERT INTO Comments (TaskId, Content) VALUES (24, 'Review the investment portfolio.');
+INSERT INTO Comments (TaskId, Content) VALUES (25, 'Read the book during your free time.');
+INSERT INTO Comments (TaskId, Content) VALUES (26, 'Write the article in a clear and concise manner.');
+INSERT INTO Comments (TaskId, Content) VALUES (27, 'Practice Spanish daily.');
+INSERT INTO Comments (TaskId, Content) VALUES (28, 'Bake the cake with love.');
+INSERT INTO Comments (TaskId, Content) VALUES (29, 'Plant vegetables that are in season.');
