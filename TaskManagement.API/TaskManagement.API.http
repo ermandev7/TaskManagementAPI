@@ -1,0 +1,18 @@
+@TaskManagement.API_HostAddress = http://localhost:5167
+
+GET {{TaskManagement.API_HostAddress}}/weatherforecast/
+Accept: application/json
+###
+
+GET {{TaskManagement.API_HostAddress}}/api/Categories/
+Accept: application/json
+###
+
+GET {{TaskManagement.API_HostAddress}}/api/Categories/3
+Accept: application/json
+###
+
+GET {{TaskManagement.API_HostAddress}}/api/Categories/CategoriaTask
+Accept: application/json
+
+###
